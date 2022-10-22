@@ -1,13 +1,25 @@
+:root {
+    --orange: #d04026;
+    --blue: #31515F;
+    --white: #FCFAEF;
+    --dark-brown: #352D27;
+    --light-brown: #463E39;
+    background: var(--white);
+    font-family: 'Josefin Sans', sans-serif;
+}
+
 #container {
     display: flex;
-    justify-content: center;
+    
 }
 
 #unit-selector {
-    background-color: purple;
     margin: 3vw;
     flex-grow: 1;
-    padding: 10px
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #unit-shower {
@@ -35,29 +47,42 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: blue;
     padding: 1vw;
     flex-grow: 5;
     margin-left: 3vw;
     margin-right: 15vw;
 }
 
+.btn-format {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.unit-selector-template {
+    margin: 0.5vw;
+    background-color: var(--orange);
+    padding: 1vw;
+    border-radius: 50px;
+    box-shadow: 5px 5px #888888;
+
+}
+
 .unit-notes-template {
-    background-color: red;
+    background-color: var(--blue);
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 3vw;
-
+    color: var(--white);
+    border-radius: 25px;
+    box-shadow: 5px 5px #888888;
 }
 .unit-notes-data-image {
     width: 25vw;
     margin-bottom: 2vw;
+    border-radius: 10px;
 }
 
-.unit-notes-createdby {
-
-}
 
 .unit-games-template {
     background-color: aqua;
