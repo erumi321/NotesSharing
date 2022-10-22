@@ -14,6 +14,8 @@ function signInSuccess(authResult) {
 }
 
 function loadUnit(unitNumber) {
+    document.getElementById("unit-shower").classList.remove("hidden")
+    document.getElementById("unit-selector").classList.add("selector-left-aligned")
     API_getUnit(unitNumber, (result) => {
         createUnitNotes(result.notes)
         createUnitGames(result.games)
@@ -80,5 +82,32 @@ function createUnitGames(games) {
         newNote.classList.remove("hidden")
 
         e.children[0].appendChild(newNote)
+    })
+}
+
+function createUnitSelectorButtons() {
+    var e = document.getElementById("unit-selector")
+    var child = e.children[1].lastElementChild; 
+    while (child) {
+        e.children[1].removeChild(child);
+        child = e.children[1].lastElementChild;
+    }
+    API_getActiveUnits((active) => {
+        active.forEach((num) => {
+            API_getUnitName(num, (name) => {
+                var template = e.children[2]
+
+                var newBtn = template.cloneNode(true)
+
+                console.log(newBtn)
+
+                newBtn.innerText = `Unit ${num} - ${name}`
+
+                newBtn.setAttribute("onclick", `loadUnit(${num})`)
+                newBtn.classList.remove("hidden")
+
+                e.children[1].append(newBtn)
+            })
+        })
     })
 }

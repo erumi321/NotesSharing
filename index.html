@@ -23,11 +23,18 @@
     </div>
 
     <button onclick="loadUnit(16)">Help me</button>
+    <button onclick="createUnitSelectorButtons()">Load Units</button>
     <div id="container">
         <div id="unit-selector">
             <p>unit selector</p>
+            <div>
+
+            </div>
+            <btn class="unit-selector-template hidden">
+                Unit X - NAME
+            </btn>
         </div>
-        <div id="unit-shower">
+        <div id="unit-shower" class="hidden">
             <div id="unit-notes" class="">
                 <div>
 
@@ -48,7 +55,6 @@
                     <p class="unit-games-data-link hidden"></p>
                  </div>
             </div>
-
         </div>
     </div>
     <script src="js/firebase_api.js"></script>

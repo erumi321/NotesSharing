@@ -85,6 +85,14 @@ function API_getUnit(unitNumber, callback) {
     })
 }
 
+function API_getUnitName(unitNumber, callback) {
+    console.log(unitNumber)
+    db.collection("unitDirectory").doc(`${unitNumber}`).get().then((doc) => {
+        console.log(doc.data())
+        callback(doc.data().name)
+    })
+}
+
 //Creating data
 function API_addNote(unitNumber, data, callback) {
     db.collection(`unit${unitNumber}-notes`).add(data).then((result) => {
