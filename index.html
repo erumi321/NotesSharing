@@ -23,16 +23,28 @@
     </div>
 
     <button onclick="loadUnit(16)">Help me</button>
+    <div id="container">
+        <div id="unit-selector">
+            <p>unit selector</p>
+        </div>
+        <div id="unit-shower">
+            <div id="unit-notes hidden">
+                <!--Loads each div as a copy of the template for each unit in the active units in unit directory-->
+                <div class="unit-notes-template hidden">
+                    <p class="unit-notes-createdby">example</p>
+                    <p class="unit-notes-data-link hidden"></p>
+                    <img class="unit-notes-data-image hidden"></img>
+                </div>
+            </div>
+            <div id="unit-games" class="">
+                <div class="unit-games-template ">
+                    <p class="unit-games-createdby">example</p>
+                    <p class="unit-games-data-link hidden"></p>
+                 </div>
+            </div>
 
-    <div id="unit-selector">
-         <!--Loads each div as a copy of the template for each unit in the active units in unit directory-->
-         <div class="unit-selector-template">
-            <p class="unit-selector-createdby">example</p>
-            <p class="unit-selector-data-link hidden"></p>
-            <img class="unit-selector-data-image hidden"></img>
-         </div>
+        </div>
     </div>
-
     <script src="js/firebase_api.js"></script>
     <script src="js/index.js"></script>
 </body>

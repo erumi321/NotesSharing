@@ -1,0 +1,51 @@
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#unit-selector {
+    background-color: purple;
+    margin: 3vw;
+    flex-grow: 1;
+}
+
+#unit-shower {
+    flex-grow: 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#unit-games {
+    display: flexbox;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: green;
+    padding: 3vw;
+    flex-grow: 5;
+    margin-left: 3vw;
+    margin-right: 15vw;
+}
+
+#unit-notes {
+    display: flexbox;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: blue;
+    padding: 3vw;
+    flex-grow: 5;
+    margin-left: 3vw;
+    margin-right: 15vw;
+}
+
+.unit-notes-template {
+    background-color: red;
+
+}
+
+.unit-games-template {
+    background-color: aqua;
+}
