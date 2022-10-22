@@ -21,11 +21,18 @@ function loadUnit(unitNumber) {
 }
 
 function createUnitNotes(notes) {
+    var e = document.getElementById("unit-notes")
+    var child = e.children[0].lastElementChild; 
+    while (child) {
+        e.children[0].removeChild(child);
+        child = e.children[0].lastElementChild;
+    }
+
     var keys = Object.keys(notes).sort((a,b) =>{return b-a})
 
     keys.forEach((key) => {
         var note = notes[key]
-        var template = document.getElementById("unit-notes").children[0]
+        var template = e.children[1]
 
         var newNote = template.cloneNode(true)
 
@@ -45,16 +52,22 @@ function createUnitNotes(notes) {
 
         newNote.classList.remove("hidden")
 
-        document.getElementById("unit-notes").appendChild(newNote)
+        e.children[0].appendChild(newNote)
     })
 }
 
 function createUnitGames(games) {
+    var e = document.getElementById("unit-games")
+    var child = e.children[0].lastElementChild; 
+    while (child) {
+        e.children[0].removeChild(child);
+        child = e.children[0].lastElementChild;
+    }
     var keys = Object.keys(games).sort((a,b) =>{return b-a})
 
     keys.forEach((key) => {
         var game = games[key]
-        var template = document.getElementById("unit-games").children[0]
+        var template = e.children[1]
 
         var newNote = template.cloneNode(true)
 
@@ -66,6 +79,6 @@ function createUnitGames(games) {
 
         newNote.classList.remove("hidden")
 
-        document.getElementById("unit-games").appendChild(newNote)
+        e.children[0].appendChild(newNote)
     })
 }
