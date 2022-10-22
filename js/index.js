@@ -92,6 +92,10 @@ function createUnitSelectorButtons() {
         e.children[1].removeChild(child);
         child = e.children[1].lastElementChild;
     }
+
+    var i = 1
+    var yOffset = 5
+
     API_getActiveUnits((active) => {
         active.forEach((num) => {
             API_getUnitName(num, (name) => {
@@ -105,7 +109,8 @@ function createUnitSelectorButtons() {
 
                 newBtn.setAttribute("onclick", `loadUnit(${num})`)
                 newBtn.classList.remove("hidden")
-
+                newBtn.setAttribute("style", `margin-top: calc(${yOffset * i}vw + 1vh);`)
+                i++
                 e.children[1].append(newBtn)
             })
         })
