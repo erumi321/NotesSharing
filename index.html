@@ -22,7 +22,16 @@
         
     </div>
 
-    <button onclick="checkUnit()">Help me</button>
+    <button onclick="loadUnit(16)">Help me</button>
+
+    <div id="unit-selector">
+         <!--Loads each div as a copy of the template for each unit in the active units in unit directory-->
+         <div class="unit-selector-template">
+            <p class="unit-selector-createdby">example</p>
+            <p class="unit-selector-data-link hidden"></p>
+            <img class="unit-selector-data-image hidden"></img>
+         </div>
+    </div>
 
     <script src="js/firebase_api.js"></script>
     <script src="js/index.js"></script>

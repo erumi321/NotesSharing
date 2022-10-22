@@ -15,6 +15,6 @@ function signInSuccess(authResult) {
 
 function loadUnit(unitNumber) {
     API_getUnit(unitNumber, (result) => {
-        console.log(result)
+        console.log(result.notes)
     })
 }
