@@ -1,13 +1,13 @@
 #container {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 #unit-selector {
     background-color: purple;
     margin: 3vw;
     flex-grow: 1;
+    padding: 10px
 }
 
 #unit-shower {
@@ -43,6 +43,9 @@
 
 .unit-notes-template {
     background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
