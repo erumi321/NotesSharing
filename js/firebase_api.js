@@ -4,7 +4,7 @@ authDomain: "apushnotes-733e9.firebaseapp.com",
 projectId: "apushnotes-733e9",
 storageBucket: "apushnotes-733e9.appspot.com",
 messagingSenderId: "509692012521",
-appId: "1:509692012521:web:7a3d7fbe83da776df6cd78"
+appId: "1:509692012521:web:7a3d7fbe83da776df6cd78",
 };
 
 // Initialize Firebase
@@ -12,6 +12,7 @@ firebase.initializeApp(firebaseConfig);
 
 //Initialize firestore
 const db = firebase.firestore();
+const storage = firebase.storage();
 
 //user 
 function API_getCurrentUser() {
@@ -106,3 +107,27 @@ function API_addGame(unitNumber, data, callback) {
         callback(result)
       })
 }
+
+//storage
+function API_getImage(fileName, callback) {
+    storageRef.child(`images/${fileName}`).getDownloadURL()
+    .then((url) => {
+      // `url` is the download URL for 'images/${fileName}.jpg'
+  
+      // This can be downloaded directly:
+      var xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = (event) => {
+        var blob = xhr.response;
+      };
+      xhr.open('GET', url);
+      xhr.send();
+  
+      callback(url)
+    })
+    .catch((error) => {
+      // Handle any errors
+    });
+}
+// Create a storage reference from our storage service
+var storageRef = storage.ref();

@@ -40,14 +40,45 @@ function createUnitNotes(notes) {
 
         var createdby = newNote.children[0]
         var link_child = newNote.children[1]
-        var img_child = newNote.children[2]
+        var img_container = newNote.children[2]
+        var img_child = newNote.children[3]
 
         if (note.type == "link") {
             link_child.classList.remove("hidden")
             link_child.innerText = note.data
         }else if (note.type == "image"){
-            img_child.classList.remove("hidden")
-            img_child.setAttribute("src", "data:image/jpg;base64," + note.data)
+            img_container.classList.remove("hidden")
+            index = 1
+            var imgs = note.data.split("~~~")
+
+            imgs.forEach((i) => {
+                var new_img = img_child.cloneNode(true);    
+    
+                new_img.classList.remove("hidden")
+                img_container.append(new_img)
+
+                if (index % 2 == 0) {
+                    var new_break = document.createElement("br")
+
+                    img_container.append(new_break)
+                    new_img.setAttribute("style", "margin-left: 0.1vw;")
+                }else{
+                    new_img.setAttribute("style", "margin-right: 0.1vw;")
+                }
+                index++;
+            })
+
+            var img_keys = Object.keys(imgs).sort((a,b) =>{return b-a})
+
+            img_keys.forEach((imgKey, i) => {
+                var imgName = imgs[imgKey]
+                var index = i + Math.floor(i / 2)
+                console.log(index)
+                API_getImage(imgName, (url) => {
+                    
+                    img_container.children[index].setAttribute("src", url)
+                })
+            })
         }
 
         createdby.innerText = note.createdby
@@ -116,3 +147,41 @@ function createUnitSelectorButtons() {
         })
     })
 }
+
+function focusImage(image) {
+    var magnifier = document.getElementById("image-magnifier")
+    defocusImage(magnifier)
+    image.classList.add('focused');
+    magnifier.setAttribute("src", image.getAttribute("src"))
+    setTimeout(() => {
+        magnifier.classList.remove("hidden")
+        magnifier.style.marginTop = `calc(-1 * ${magnifier.clientHeight / 2}px)`
+    }, 0.1)
+}
+var scrollMult = 1
+
+function defocusImage(magnifier) {
+    magnifier.setAttribute("src", "")
+    magnifier.classList.add("hidden")
+
+    document.querySelectorAll(".focused").forEach((e) => {
+        e.classList.remove("focused")
+    })
+    scrollMult = 1
+    magnifier.style.transform = `scale(${scrollMult})`
+}
+
+window.addEventListener('wheel',(event) => {
+    console.log('Wheeling...', event);
+
+    var magnifier = document.getElementById("image-magnifier")
+    console.log(magnifier.classList.contains("hidden"))
+    if (!magnifier.classList.contains("hidden")) {
+        scrollMult -= 0.1 * (event.deltaY / Math.abs(event.deltaY))
+        if (scrollMult < 1) {
+            scrollMult = 1
+        }
+
+        magnifier.style.transform = `scale(${scrollMult})`
+    }
+});
