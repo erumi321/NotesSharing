@@ -101,7 +101,6 @@ function API_addNote(unitNumber, data, callback) {
       })
 }
 
-//Creating data
 function API_addGame(unitNumber, data, callback) {
     db.collection(`unit${unitNumber}-games`).add(data).then((result) => {
         callback(result)

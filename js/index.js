@@ -1,18 +1,57 @@
+//Auth
 createAuthUI()
-
 function createAuthUI() {
     //do not create the sign-in with google button if we already are signed-in
     if (API_getCurrentUser() == null) {
         API_createAuthUI(signInSuccess, false, "")
+    }else{
+        document.getElementById("container").classList.remove("hidden")
+        createUnitSelectorButtons()
     }
 }
 
 function signInSuccess(authResult) {
     console.log(authResult)
 
-    localStorage.setItem("currentUser", JSON.stringiofy(authResult))
+    localStorage.setItem("currentUser", JSON.stringify(authResult))
 }
 
+var latestUnit = 0
+
+//Selector
+function createUnitSelectorButtons() {
+    var e = document.getElementById("unit-selector")
+    var child = e.children[1].lastElementChild; 
+    while (child) {
+        e.children[1].removeChild(child);
+        child = e.children[1].lastElementChild;
+    }
+
+    var i = 1
+    var yOffset = 5
+
+    API_getActiveUnits((active) => {
+        active.forEach((num) => {
+            API_getUnitName(num, (name) => {
+                if (num > latestUnit) {
+                    lastestUnit = num
+                }
+
+                var template = e.children[2]
+
+                var newBtn = template.cloneNode(true)
+
+                newBtn.innerText = `Unit ${num} - ${name}`
+
+                newBtn.setAttribute("onclick", `loadUnit(${num})`)
+                newBtn.classList.remove("hidden")
+                newBtn.setAttribute("style", `margin-top: calc(${yOffset * i}vw + 1vh);`)
+                i++
+                e.children[1].append(newBtn)
+            })
+        })
+    })
+}
 function loadUnit(unitNumber) {
     document.getElementById("unit-shower").classList.remove("hidden")
     document.getElementById("unit-selector").classList.add("selector-left-aligned")
@@ -22,6 +61,7 @@ function loadUnit(unitNumber) {
     })
 }
 
+//Shower content
 function createUnitNotes(notes) {
     var e = document.getElementById("unit-notes")
     var child = e.children[0].lastElementChild; 
@@ -116,38 +156,50 @@ function createUnitGames(games) {
     })
 }
 
-function createUnitSelectorButtons() {
-    var e = document.getElementById("unit-selector")
-    var child = e.children[1].lastElementChild; 
-    while (child) {
-        e.children[1].removeChild(child);
-        child = e.children[1].lastElementChild;
+
+//Uploading
+function uploadNote() {
+    var createdby = API_getCurrentUser().displayName
+    var uid = API_getCurrentUser().uid
+/*  var type = getType()
+    var data = getNoteData()
+    var name = generateRandomImageName()
+    var unitNum = latestUnit
+    if (type == "image") {
+        API_uploadImage(data, name)
     }
 
-    var i = 1
-    var yOffset = 5
-
-    API_getActiveUnits((active) => {
-        active.forEach((num) => {
-            API_getUnitName(num, (name) => {
-                var template = e.children[2]
-
-                var newBtn = template.cloneNode(true)
-
-                console.log(newBtn)
-
-                newBtn.innerText = `Unit ${num} - ${name}`
-
-                newBtn.setAttribute("onclick", `loadUnit(${num})`)
-                newBtn.classList.remove("hidden")
-                newBtn.setAttribute("style", `margin-top: calc(${yOffset * i}vw + 1vh);`)
-                i++
-                e.children[1].append(newBtn)
-            })
-        })
+    API_addNote(unitNum, {
+        createdby: createdby,
+        uid: uid,
+        type: type,
+        data: data
+    }, (result) => {
+        alert("Success")
+        location.reload()
     })
+    */
 }
 
+function uploadGame() {
+    var createdby = API_getCurrentUser().displayName
+    var uid = API_getCurrentUser().uid
+/*  var data = getGameData()
+    var name = generateRandomImageName()
+    var unitNum = latestUnit
+
+    API_addNote(unitNum, {
+        createdby: createdby,
+        uid: uid,
+        data: data
+    }, (result) => {
+        alert("Success")
+        location.reload()
+    })
+    */
+}
+
+//Image util
 function focusImage(image) {
     var magnifier = document.getElementById("image-magnifier")
     defocusImage(magnifier)

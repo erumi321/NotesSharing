@@ -1,5 +1,5 @@
 :root {
-    --orange: #d04026;
+    --orange: #c01d21;
     --blue: #31515F;
     --white: #FCFAEF;
     --dark-brown: #352D27;
@@ -54,6 +54,12 @@
     margin-right: 15vw; */
 }
 
+#selector-header {
+    width: initial;
+    margin-left: 6.5vw;
+    margin-right: auto;
+}
+
 .btn-format {
     display: flex;
     flex-direction: column;
@@ -61,6 +67,11 @@
 }
 
 .unit-selector-template {
+    color: var(--white);
+    text-shadow: -1px 1px 0 #c09065,
+    1px 1px 0 #c09065,
+   1px -1px 0 #c09065,
+  -1px -1px 0 #c09065;
     position:absolute;
     left: 5vw;
     top: calc(15vh + 1vw);
