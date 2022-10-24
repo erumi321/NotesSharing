@@ -14,6 +14,9 @@ function signInSuccess(authResult) {
     console.log(authResult)
 
     localStorage.setItem("currentUser", JSON.stringify(authResult))
+
+    document.getElementById("container").classList.remove("hidden")
+    createUnitSelectorButtons()
 }
 
 var latestUnit = 0

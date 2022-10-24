@@ -59,6 +59,17 @@ function API_createAuthUI(signInSuccessWithAuthResultFunc, redirect, redirectURL
     firebase_UI.start('#firebaseui-auth-container',uiConfig);
 }
 
+function API_logout() {
+    if (API_getCurrentUser() != null) {
+        firebase.auth().signOut().then(() => {
+            localStorage.setItem("currentUser", null);
+            location.reload();
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+}
+
 //getting data
 function API_getActiveUnits(callback) {
     db.collection("unitDirectory").doc("active").get().then((doc) => {
@@ -109,6 +120,7 @@ function API_addGame(unitNumber, data, callback) {
 
 //storage
 function API_getImage(fileName, callback) {
+    var storageRef = storage.ref();
     storageRef.child(`images/${fileName}`).getDownloadURL()
     .then((url) => {
       // `url` is the download URL for 'images/${fileName}.jpg'
@@ -128,5 +140,3 @@ function API_getImage(fileName, callback) {
       // Handle any errors
     });
 }
-// Create a storage reference from our storage service
-var storageRef = storage.ref();

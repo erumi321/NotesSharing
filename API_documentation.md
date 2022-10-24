@@ -74,11 +74,19 @@ No parameters, this is also not async, so we don't need a callback. Returns null
 
 You don't really need to worry about this. All it does is use firebase's auth system to create the "Sign-in with Google" button and sticks that inside an element with id "firebaseui-auth-container". Will call `callback` if the sign-in is successful, and if `redirect` is true set the browser's location to `redirectURL` after calling the callback.
 
+### <code>**API_signOut()**</code>
+Signs the user out both from localStorage by setting it to null and from google's auth system using the provided `auth().signOut()` function
 	
 # Getting Data
 ### <code>**API_getActiveUnits(callback)**</code>
 ||Name|Type |Explanation||
 |--|--|--|--|--|
+||callback(data)|function  |callback to call when active units are found, first argument is array of active units|
+
+### <code>**API_getUnitName(unitNumber, callback)**</code>
+||Name|Type |Explanation||
+|--|--|--|--|--|
+||unitNumber|integer|The number of the unit, will get data from collection `unitDirectory` and return the value of the `name` field of the doc with id `unitNumber`|
 ||callback(data)|function  |callback to call when active units are found, first argument is array of active units|
 
 ### <code>**API_getUnit(unitNumber, callback)**</code>
@@ -109,7 +117,11 @@ You don't really need to worry about this. All it does is use firebase's auth sy
 	}
 }
 ```
-
+### <code>**API_getImage(fileName, callback)**</code>
+ ||Name|Type |Explanation||
+|--|--|--|--|--|
+||fileName|string|The name of the image inside the `image` folder in Firebase Storage, must include the extension|
+||callback(url)|function |callback to call when the url of the image is found, first argument is the url of the image |
 # Creating Data
 ### <code>**API_addNote(unitNumber, data, callback)**</code>
  ||Name|Type |Explanation||
