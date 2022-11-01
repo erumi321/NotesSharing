@@ -20,6 +20,9 @@
 
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <link rel = "icon" href = 
+    "foner.jpeg" 
+            type = "image/x-icon">
 </head>
 <body>
     
@@ -56,13 +59,51 @@
                 <div>
                     
                 </div>
-                <div class="unit-games-template ">
-                    <p class="unit-games-createdby">example</p>
-                    <p class="unit-games-data-link hidden"></p>
-                 </div>
+                <div class="unit-notes-template hidden">
+                    <p class="unit-notes-createdby">example</p>
+                    <p class="unit-notes-data-link"></p>
+                </div>
             </div>
+            <button id="unit-shower-notesbtn" class="unit-shower-btn selected" onclick="showNotes(this)">
+                Notes
+            </button>
+            <button id="unit-shower-gamesbtn" class="unit-shower-btn"onclick="showGames(this)">
+                Games
+            </button>
         </div>
     </div>
+
+    <button id="add-btn" onclick="toggleAddDialog()">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAA1klEQVR4nO3bMQ6AIBAAQfX/f9bGRmuMS5jp6IAN3bFtAAAAAAAAwLr2vzcwwPlaT32m4+8N8CRIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEjNyUvw9hb6aIXfphcQIEiNIzNS/jW5+UPEdQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRhAAAAAAAACAjAtgjAN+8LnYAAAAAABJRU5ErkJggg==">
+    </button>
+
+    <div id="add-dialog" class="hidden">
+        <select name="type" id="add-dialog-type" onchange="updateAddDialog(this)">
+            <option value="game">Game</option>
+            <option value="note">Note</option>
+        </select>
+        <div id="add-dialog-game" class="">
+            <p>Quizlet, Kahoot, etc. Link</p>
+            <input type="text" id="add-game-input">
+        </div>
+        <div id="add-dialog-note" class="hidden">
+            <select name="note-type" id="add-note-type" onchange="updateAddNote(this)">
+                <option value="Link">Link</option>
+                <option value="Picture">Pictures</option>
+            </select>
+            <div id="add-note-pictures">
+
+            </div>
+            <div id="add-note-link">
+                <p>Doc Link</p>
+                <input type="text" id="add-note-input">
+            </div>
+        </div>
+        <button id="add-submit" onclick="submitNewPost()">
+            Submit
+        </button>
+    </div>
+
     <script src="js/firebase_api.js"></script>
     <script src="js/index.js"></script>
 </body>

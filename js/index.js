@@ -35,11 +35,10 @@ function createUnitSelectorButtons() {
 
     API_getActiveUnits((active) => {
         active.forEach((num) => {
+            if (num > latestUnit) {
+                latestUnit = num
+            }
             API_getUnitName(num, (name) => {
-                if (num > latestUnit) {
-                    lastestUnit = num
-                }
-
                 var template = e.children[2]
 
                 var newBtn = template.cloneNode(true)
@@ -159,49 +158,6 @@ function createUnitGames(games) {
     })
 }
 
-
-//Uploading
-function uploadNote() {
-    var createdby = API_getCurrentUser().displayName
-    var uid = API_getCurrentUser().uid
-/*  var type = getType()
-    var data = getNoteData()
-    var name = generateRandomImageName()
-    var unitNum = latestUnit
-    if (type == "image") {
-        API_uploadImage(data, name)
-    }
-
-    API_addNote(unitNum, {
-        createdby: createdby,
-        uid: uid,
-        type: type,
-        data: data
-    }, (result) => {
-        alert("Success")
-        location.reload()
-    })
-    */
-}
-
-function uploadGame() {
-    var createdby = API_getCurrentUser().displayName
-    var uid = API_getCurrentUser().uid
-/*  var data = getGameData()
-    var name = generateRandomImageName()
-    var unitNum = latestUnit
-
-    API_addNote(unitNum, {
-        createdby: createdby,
-        uid: uid,
-        data: data
-    }, (result) => {
-        alert("Success")
-        location.reload()
-    })
-    */
-}
-
 //Image util
 function focusImage(image) {
     var magnifier = document.getElementById("image-magnifier")
@@ -240,3 +196,85 @@ window.addEventListener('wheel',(event) => {
         magnifier.style.transform = `scale(${scrollMult})`
     }
 });
+
+function toggleAddDialog() {
+    document.getElementById("add-dialog").classList.toggle("hidden")
+}
+
+function updateAddDialog(selectElement) {
+    document.getElementById("add-dialog-game").classList.add('hidden')
+    document.getElementById("add-dialog-note").classList.add('hidden')
+    document.getElementById(`add-dialog-${selectElement.value}`).classList.remove('hidden')
+}
+
+function submitNewPost() {
+    var type = document.getElementById("add-dialog-type").value;
+
+    if (type == "game") {
+        var link = document.getElementById("add-game-input").value;
+        if (validateUrl(link)) {
+            var data = {
+                createdby: API_getCurrentUser().displayName,
+                uid: API_getCurrentUser().uid,
+                data: link
+            }
+            console.log(latestUnit, data);
+            API_addGame(latestUnit, data, () => {
+                location.reload()
+            })
+        }else{
+            alert("Invalid URL, try putting the https:// before it if it isn't there")
+        }
+    }else{
+        var noteType = document.getElementById("add-note-type").value;
+
+        if(noteType == "Link") {
+            var link = document.getElementById("add-note-input").value
+            if (validateUrl(link)) {
+                var data = {
+                    createdby: API_getCurrentUser().displayName,
+                    uid: API_getCurrentUser().uid,
+                    data: link,
+                    type: "link"
+                }
+    
+                API_addNote(latestUnit, data, () => {
+                    location.reload()
+                })
+            }else{
+                alert("Invalid URL, try putting the https:// before it if it isn't there")
+            }
+
+        }else{
+            //IMPLEMENT ME
+        }
+    }
+}
+
+function validateUrl(value) {
+    return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value);
+  }
+
+function showNotes(btn) {
+    if (btn.classList.contains("selected")) {
+        return
+    }
+
+    btn.classList.add("selected")
+    document.getElementById("unit-shower-gamesbtn").classList.remove('selected')
+
+    document.getElementById("unit-notes").classList.remove('hidden')
+    document.getElementById("unit-games").classList.add('hidden')
+}
+
+function showGames(btn) {
+    if (btn.classList.contains("selected")) {
+        return
+    }
+
+    btn.classList.add("selected")
+    document.getElementById("unit-shower-notesbtn").classList.remove('selected')
+
+    document.getElementById("unit-games").classList.remove('hidden')
+    document.getElementById("unit-notes").classList.add('hidden')
+}

@@ -1,6 +1,7 @@
 :root {
     --orange: #c01d21;
     --blue: #31515F;
+    --light-blue: #7ebfcf;
     --white: #FCFAEF;
     --dark-brown: #352D27;
     --light-brown: #463E39;
@@ -35,9 +36,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: green;
-    padding: 3vw;
+    padding: 1vw;
     flex-grow: 5;
+    margin-left: -40vw;
     /* margin-left: 3vw;
     margin-right: 15vw; */
 }
@@ -127,11 +128,142 @@ btn.unit-selector-template:active {
     padding: 50vw;
 }
 
-.unit-games-template {
-    background-color: aqua;
-}
-
 .firebaseui-auth-container {
     position: relative;
     left: -40;
+}
+
+#add-btn {
+    position: fixed;
+    right: 4vw;
+    bottom: 3vw;
+    border-radius: 50%;
+    border: 3px solid #000;
+    background-color: var(--light-blue);
+    width: 4vw;
+    height: 4vw;
+    transition: right 0.3s ease, bottom 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+}
+
+#add-btn:hover {
+    filter:brightness(0.9);
+    transition: all 0.3s ease;
+    width: 4.5vw;
+    height: 4.5vw;
+    right: 3.75vw;
+    bottom: 2.75vw;
+}
+
+#add-btn * {
+    width: 70%;
+    height: 70%;
+}
+
+#add-dialog {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    width: 30vw;
+    height: 10vw;
+    margin-left: -15.5vw;
+    margin-top: -10.5vw;
+    background-color: var(--blue);
+    border-radius: 2vw;
+    padding: 1vw;
+}
+
+#add-dialog *:focus {
+    outline: none
+}
+
+#add-dialog p {
+    margin: 2.3vw 0 0 2vw;
+    color: var(--white);
+    text-shadow: -1px 1px 0 #c09065,
+    1px 1px 0 #c09065,
+   1px -1px 0 #c09065,
+  -1px -1px 0 #c09065;
+  font-size: 1.3em;
+}
+
+#add-dialog select {
+    width: 5vw;
+    margin-left: 2vw;
+    margin-bottom: 0.5vw;
+    margin-bottom: 0;
+    border-radius: 10px 10px 0 0 ;
+}
+
+#add-dialog input {
+    margin-top: 0.6vw;
+    width: 25vw;
+    margin-left: 2vw;
+    border-radius: 1vw;
+    border: 3px solid #000;
+}
+
+#add-note-type {
+    border-radius: 0 !important;
+}
+
+#add-submit {
+    position: absolute;
+    width: 4vw;
+    height: 2vw;
+    left: 50%;
+    bottom: 0.4vw;
+    margin-left: -2vw;
+    border-radius: 3vw;
+    background-color:  var(--light-blue);
+    font-weight: 600;
+    transition: margin-left 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+}
+
+#add-submit:hover {
+    filter: brightness(0.8);
+    transition: all 0.3s ease;
+    width: 4.3vw;
+    height: 2.1vw;
+    margin-left: -2.15vw;
+
+}
+
+.unit-shower-btn {
+    position: absolute;
+    width: 4vw;
+    height: 2vw;
+    left: 50%;
+    top: 0.6vw;
+    margin-left: -2vw;
+    border-radius: 3vw;
+    background-color:  var(--light-blue);
+    font-weight: 600;
+    transition: margin-left 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+}
+
+.unit-shower-btn:not(.selected):hover {
+    filter: brightness(0.9);
+    transition: all 0.3s ease;
+    width: 4.3vw;
+    height: 2.1vw;
+}
+
+#unit-shower-notesbtn {
+    margin-left: -10vw;
+}
+
+#unit-shower-notesbtn:not(.selected):hover {
+    margin-left: -10.15vw;
+}
+
+#unit-shower-gamesbtn {
+    margin-left: 5vw;
+}
+
+#unit-shower-gamesbtn:not(.selected):hover {
+    margin-left: 4.85vw;
+}
+
+.selected {
+    filter: brightness(0.6) saturate(0.8);
 }

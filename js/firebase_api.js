@@ -107,13 +107,13 @@ function API_getUnitName(unitNumber, callback) {
 
 //Creating data
 function API_addNote(unitNumber, data, callback) {
-    db.collection(`unit${unitNumber}-notes`).add(data).then((result) => {
+    db.collection(`unit${unitNumber}-notes`).doc(Date.now().toString()).set(data).then((result) => {
         callback(result)
       })
 }
 
 function API_addGame(unitNumber, data, callback) {
-    db.collection(`unit${unitNumber}-games`).add(data).then((result) => {
+    db.collection(`unit${unitNumber}-games`).doc(Date.now().toString()).set(data).then((result) => {
         callback(result)
       })
 }
