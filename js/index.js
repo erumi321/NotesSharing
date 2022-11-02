@@ -34,7 +34,8 @@ function createUnitSelectorButtons() {
     var yOffset = 5
 
     API_getActiveUnits((active) => {
-        active.forEach((num) => {
+        var sortedActive = active.sort((a,b) => {return b-a})
+        sortedActive.forEach((num) => {
             if (num > latestUnit) {
                 latestUnit = num
             }
@@ -52,6 +53,9 @@ function createUnitSelectorButtons() {
                 e.children[1].append(newBtn)
             })
         })
+
+        loadUnit(sortedActive[0])
+        console.log(sortedActive)
     })
 }
 function loadUnit(unitNumber) {

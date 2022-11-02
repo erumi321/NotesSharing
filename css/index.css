@@ -61,6 +61,8 @@ a{
     width: initial;
     margin-left: 6.5vw;
     margin-right: auto;
+    box-shadow: none !important;
+    border: 2px solid #c09065;
 }
 
 .btn-format {
