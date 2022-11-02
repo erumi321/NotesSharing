@@ -8,7 +8,9 @@
     background: var(--white);
     font-family: 'Josefin Sans', sans-serif;
 }
-
+a{
+    color: white;
+}
 #container {
     display: flex;
     
@@ -113,6 +115,13 @@ btn.unit-selector-template:active {
     margin-left: 1vw;
     margin-right: 1vw;
     border-radius: 10px;
+}
+
+.unit-notes-data-link {
+    width: 20vw;
+    margin-bottom: 1vw;
+    overflow-wrap: break-word;
+    /* margin-left: -12vw; */
 }
 
 #image-magnifier {

@@ -88,6 +88,7 @@ function createUnitNotes(notes) {
         if (note.type == "link") {
             link_child.classList.remove("hidden")
             link_child.innerText = note.data
+            link_child.setAttribute('href', note.data)
         }else if (note.type == "image"){
             img_container.classList.remove("hidden")
             index = 1
@@ -149,6 +150,7 @@ function createUnitGames(games) {
         var createdby = newNote.children[0]
         var link_child = newNote.children[1]
         link_child.innerText = game.data
+        link_child.setAttribute('href', game.data)
 
         createdby.innerText = game.createdby
 
