@@ -140,3 +140,10 @@ function API_getImage(fileName, callback) {
       // Handle any errors
     });
 }
+
+function API_createImage(name, data, callback) {
+    var storageRef = storage.ref();
+    storageRef.child(`images/${name}`).putString(data, 'data_url').then((snapshot) => {
+        callback(snapshot)
+    })
+}

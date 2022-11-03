@@ -115,7 +115,7 @@ function createUnitNotes(notes) {
                 index++;
             })
 
-            var img_keys = Object.keys(imgs).sort((a,b) =>{return b-a})
+            var img_keys = Object.keys(imgs).sort((a,b) =>{return a-b})
 
             img_keys.forEach((imgKey, i) => {
                 var imgName = imgs[imgKey]
@@ -234,7 +234,7 @@ function submitNewPost() {
     }else{
         var noteType = document.getElementById("add-note-type").value;
 
-        if(noteType == "Link") {
+        if(noteType == "link") {
             var link = document.getElementById("add-note-input").value
             if (validateUrl(link)) {
                 var data = {
@@ -252,7 +252,51 @@ function submitNewPost() {
             }
 
         }else{
-            //IMPLEMENT ME
+            var imgHolder = document.getElementById("image-holder")
+            var children = imgHolder.children;
+
+            var fileNames = []
+
+            var imageUploadingDone = false
+            var noteUploadingDone = false
+            for(var i = 0; i < children.length; i++) {
+                var child = children[i];
+                var img = child.children[1]
+
+                var data = img.getAttribute("src")
+
+                var fileName = Date.now().toString() + "IMG" + i + API_getCurrentUser().uid                
+                fileNames.push(fileName)
+
+                var currentIndex = i
+
+                API_createImage(fileName, data, () =>{
+                    console.log("Finished uploading image", currentIndex)
+                    if (currentIndex == children.length - 1) {
+                        imageUploadingDone = true
+                        if (noteUploadingDone) {
+                            location.reload()
+                        }
+                    }
+                })
+            }
+
+            var fileJoined = fileNames.join("~~~")
+            console.log(fileJoined)
+
+            var data = {
+                createdby: API_getCurrentUser().displayName,
+                uid: API_getCurrentUser().uid,
+                data: fileJoined,
+                type: "image"
+            }
+
+            API_addNote(latestUnit, data, () => {
+                if (imageUploadingDone == true) {
+                    location.reload()
+                }
+                noteUploadingDone = true;
+            })
         }
     }
 }
@@ -283,4 +327,28 @@ function showGames(btn) {
 
     document.getElementById("unit-games").classList.remove('hidden')
     document.getElementById("unit-notes").classList.add('hidden')
+}
+
+function updateAddNote(selectElement){
+    document.getElementById("add-note-picture").classList.add('hidden')
+    document.getElementById("add-note-link").classList.add('hidden')
+    document.getElementById(`add-note-${selectElement.value}`).classList.remove('hidden')
+}
+
+function showImageInput(input) {
+    var imgHolder = input.parentElement.children[1]
+    var imgElement = input.parentElement.children[2]
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      const uploaded_image = reader.result;
+      var newImg = imgElement.cloneNode(true)
+      newImg.children[1].setAttribute("src", uploaded_image)
+      newImg.classList.remove("hidden")
+      imgHolder.append(newImg)
+    });
+    reader.readAsDataURL(input.files[0]);
+}
+
+function deleteImage(holder) {
+    holder.remove();
 }

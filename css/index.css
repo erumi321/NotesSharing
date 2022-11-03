@@ -137,6 +137,7 @@ btn.unit-selector-template:active {
     object-fit: fill;
     background-color: #000000cc;
     padding: 50vw;
+    z-index: 999;
 }
 
 .firebaseui-auth-container {
@@ -175,9 +176,9 @@ btn.unit-selector-template:active {
     top: 50vh;
     left: 50vw;
     width: 30vw;
-    height: 10vw;
+    min-height: 10vw;
     margin-left: -15.5vw;
-    margin-top: -10.5vw;
+    margin-top: -12vw;
     background-color: var(--blue);
     border-radius: 2vw;
     padding: 1vw;
@@ -188,7 +189,7 @@ btn.unit-selector-template:active {
 }
 
 #add-dialog p {
-    margin: 2.3vw 0 0 2vw;
+    margin: 1vw 0 0 2vw;
     color: var(--white);
     text-shadow: -1px 1px 0 #c09065,
     1px 1px 0 #c09065,
@@ -196,6 +197,13 @@ btn.unit-selector-template:active {
   -1px -1px 0 #c09065;
   font-size: 1.3em;
 }
+
+#image-holder {
+    margin-top: 1.2vw;
+    margin-left: 3vw;
+    margin-bottom: 4vw;
+}
+
 
 #add-dialog select {
     width: 5vw;
@@ -278,3 +286,46 @@ btn.unit-selector-template:active {
 .selected {
     filter: brightness(0.6) saturate(0.8);
 }
+
+.notes-image-holder {
+    position: relative;
+    width: 10vw;
+    display: inline-block;
+    margin-right: 2vw;
+}
+
+.notes-image-delete {
+    position: absolute;
+    right: -8%;
+    top: 3%;
+    width: 2vw;
+    height: 1.3vw;
+    border-radius: 1vw; 
+    background-color: var(--orange);
+    transition: filter 0.2s ease;
+}
+
+.notes-image-delete:hover {
+    filter: brightness(0.8);
+    transition: filter 0.2s ease;
+}
+
+.notes-image-delete * {
+    width: 0.9vw;
+    height: 0.9vw;
+    /* margin-left: -0.2vw; */
+}
+
+#note-image-input {
+    color: white;
+    border-color: white !important;
+}
+
+::-webkit-file-upload-button {
+    padding: 0.1vw 1em;
+    color: white;
+    background: var(--light-blue);
+    border-radius: 1vw 0 0 1vw;
+    border: none;
+    border-right: 2px solid white;
+  }

@@ -89,11 +89,18 @@
         </div>
         <div id="add-dialog-note" class="hidden">
             <select name="note-type" id="add-note-type" onchange="updateAddNote(this)">
-                <option value="Link">Link</option>
-                <option value="Picture">Pictures</option>
+                <option value="link">Link</option>
+                <option value="picture">Pictures</option>
             </select>
-            <div id="add-note-pictures">
-
+            <div id="add-note-picture" class="hidden">
+                <input type="file" id="note-image-input" accept="image/*" onchange="showImageInput(this)">
+                <div id="image-holder"></div>
+                <div class="notes-image-holder hidden">
+                    <button class="notes-image-delete" onclick="deleteImage(this.parentNode)">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAA8UlEQVRoge3aSw6DIBSFYWwaF9XH8uxjXTVNF1Ldxt+BOqhWxQh6bc43RAL3AHECzsmfAlLgDpSMK4ArkK5ddwdw8wjQdlm77o56lQEOHn2Pzc4sUdskzRLH6j9mF2qgtSVDH4GHc+60UC1j8iRJzn0ft7Qj849h6PMcY94t7cggBbFGQdqAF/Cc2x6Vz9+jr8/U9ql9Gjpa1iiINQpijYJYoyDWKIg1CmKNglijINYoiDUKYo2CWLMPOFbuft9hTG2PR/cjC1IQa3yDlM5VF/0Ra/kCNLfJ4R4VUL0bWUsWMkhahylGJg3pDWRYfHgjHj7hyv7MjZJBZgAAAABJRU5ErkJggg==">
+                    </button>
+                    <img class="unit-notes-data-image" onclick="focusImage(this)"></img>
+                </div>
             </div>
             <div id="add-note-link">
                 <p>Doc Link</p>
