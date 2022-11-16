@@ -1,3 +1,15 @@
+var height = document.body.clientHeight;
+var width = document.body.clientWidth;
+console.log(width)
+if (width <= 540) {
+    console.log(document.getElementById("add-game-input"))
+    document.getElementById("add-game-input").rows = 40
+    document.getElementById("add-game-input").setAttribute("style", "white-space: initial;")
+
+    document.getElementById("add-note-input").rows = 40
+    document.getElementById("add-note-input").setAttribute("style", "white-space: initial;")
+}
+
 //Auth
 createAuthUI()
 function createAuthUI() {
@@ -170,10 +182,15 @@ function focusImage(image) {
     defocusImage(magnifier)
     image.classList.add('focused');
     magnifier.setAttribute("src", image.getAttribute("src"))
-    setTimeout(() => {
-        magnifier.classList.remove("hidden")
-        magnifier.style.marginTop = `calc(-1 * ${magnifier.clientHeight / 2}px)`
-    }, 0.1)
+
+        setTimeout(() => {
+            magnifier.classList.remove("hidden")
+            if (width > 540) {
+                magnifier.style.marginTop = `calc(-1 * ${magnifier.clientHeight / 2}px)`
+            }else{
+                magnifier.style.marginTop = `calc(-1 * ${magnifier.clientHeight / 5}px)`
+            }
+        }, 0.1)
 }
 var scrollMult = 1
 

@@ -85,7 +85,7 @@
         </select>
         <div id="add-dialog-game" class="">
             <p>Quizlet, Kahoot, etc. Link</p>
-            <input type="text" id="add-game-input">
+            <textarea type="text" id="add-game-input" rows="1"></textarea>
         </div>
         <div id="add-dialog-note" class="hidden">
             <select name="note-type" id="add-note-type" onchange="updateAddNote(this)">
@@ -93,7 +93,7 @@
                 <option value="picture">Pictures</option>
             </select>
             <div id="add-note-picture" class="hidden">
-                <input type="file" id="note-image-input" accept="image/*" onchange="showImageInput(this)">
+                <input type="file" id="note-image-input" accept="image/*" onchange="showImageInput(this); this.value = null;" >
                 <div id="image-holder"></div>
                 <div class="notes-image-holder hidden">
                     <button class="notes-image-delete" onclick="deleteImage(this.parentNode)">
@@ -104,7 +104,7 @@
             </div>
             <div id="add-note-link">
                 <p>Doc Link</p>
-                <input type="text" id="add-note-input">
+                <textarea type="text" id="add-note-input" rows="1"></textarea>
             </div>
         </div>
         <button id="add-submit" onclick="submitNewPost()">
