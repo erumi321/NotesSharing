@@ -213,12 +213,16 @@ btn.unit-selector-template:active {
     border-radius: 10px 10px 0 0 ;
 }
 
-#add-dialog input {
+#add-dialog textarea {
     margin-top: 0.6vw;
     width: 25vw;
     margin-left: 2vw;
     border-radius: 1vw;
     border: 3px solid #000;
+    resize: horizontal;
+    word-wrap: none;
+    white-space: nowrap;
+    overflow-x: hidden;
 }
 
 #add-note-type {
@@ -244,7 +248,6 @@ btn.unit-selector-template:active {
     width: 4.3vw;
     height: 2.1vw;
     margin-left: -2.15vw;
-
 }
 
 .unit-shower-btn {
@@ -329,3 +332,204 @@ btn.unit-selector-template:active {
     border: none;
     border-right: 2px solid white;
   }
+
+  @media screen and (max-width: 540px) {
+    .unit-selector-template {
+        font-size: 0.9em;
+        width: 22vw;
+        left: 2vw;
+        padding-left: 4vw; 
+        padding-right: 4vw; 
+    }
+
+    .unit-notes-template {
+        /* background-color: var(--blue);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 3vw;
+        color: var(--white);
+        border-radius: 25px;
+        box-shadow: 5px 5px #888888; */
+        width: 65vw;
+        margin-left: 60vw;
+        margin-right: 0;
+    }
+
+    .unit-notes-data-link {
+        width: 55vw;
+        margin-bottom: 3vw;
+        overflow-wrap: break-word;
+        /* margin-left: -12vw; */
+    }
+
+    .unit-shower-btn {
+        width: 15vw;
+        height: 7.5vw;
+    }
+
+    #unit-shower-notesbtn {
+        margin-left: -44vw;
+        margin-top: 5vw;
+    }
+    #unit-shower-gamesbtn {
+        margin-left: -44vw;
+        margin-top: 15vw;
+    }
+
+    #add-btn {
+        position: fixed;
+        border-radius: 50%;
+        border: 3px solid #000;
+        background-color: var(--light-blue);
+        width: 15vw;
+        height: 15vw;
+        left: 3vw;
+        bottom: 10vw;
+    }
+    
+    #add-btn:hover {
+        filter:brightness(0.9);
+        transition: all 0.3s ease;
+        width: 15.5vw;
+        height: 15.5vw;
+        left: 3.5vw;
+        bottom: 10.5vw;
+    }
+    
+    #add-btn * {
+        width: 70%;
+        height: 70%;
+    }
+
+    #add-dialog {
+        /* position: fixed;
+        top: 50vh;
+        left: 50vw;
+        width: 30vw;
+        min-height: 10vw;
+        margin-left: -15.5vw;
+        margin-top: -12vw;
+        background-color: var(--blue);
+        border-radius: 2vw;
+        padding: 1vw; */
+        width: 70vw;
+        margin-left: -35vw;
+        min-height: 120vw;
+        margin-top: -60vw;
+    }
+
+    #add-dialog select {
+        width: 25vw;
+        /* margin-left: 2vw;
+        margin-bottom: 0.5vw;
+        margin-bottom: 0;
+        border-radius: 10px 10px 0 0 ; */
+    }
+    
+    #add-dialog textarea {
+        /* margin-top: 0.6vw;
+        width: 25vw;
+        margin-left: 2vw;
+        border-radius: 1vw;
+        border: 3px solid #000; */
+        width: 60vw;
+        height: 50vh;
+    }
+
+    #add-submit {
+        /* position: absolute;
+        width: 4vw;
+        height: 2vw;
+        left: 50%;
+        bottom: 0.4vw;
+        margin-left: -2vw;
+        border-radius: 3vw;
+        background-color:  var(--light-blue);
+        font-weight: 600;
+        transition: margin-left 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease; */
+        width: 20vw;
+        margin-left: -10vw;
+        height: 10vw;
+        bottom: 2vw;
+    }
+    
+    #add-submit:hover {
+        /* filter: brightness(0.8);
+        transition: all 0.3s ease;
+        width: 4.3vw;
+        height: 2.1vw;
+        margin-left: -2.15vw; */
+        filter: none;
+        margin-left: -10.15vw;
+        width: 20.3vw;
+        height: 10.1vw;
+    }
+
+    #add-submit:active {
+        filter: brightness(0.8);
+        /* transition: all 0.3s ease; */
+    }
+    
+    .unit-notes-data-image {
+        /* width: 10vw;
+        height: 5vw;
+        object-fit: none;
+        margin-bottom: 0.3vw;
+        margin-left: 1vw;
+        margin-right: 1vw;
+        border-radius: 10px; */
+        width: 30vw;
+        height: 15vw;
+    }
+    .notes-image-holder {
+        position: relative;
+        width: 30vw;
+        display: inline-block;
+        margin-right: 3vw;
+        margin-bottom: 2vw;
+    }
+    .notes-image-delete {
+        /* position: absolute;
+        right: -8%;
+        top: 3%;
+        width: 2vw;
+        height: 1.3vw;
+        border-radius: 1vw; 
+        background-color: var(--orange);
+        transition: filter 0.2s ease; */
+        width: 10vw;
+        height: 6.5vw;
+        border-radius: 12vw;
+        right: 0;
+    }
+    
+    .notes-image-delete:hover {
+        /* filter: brightness(0.8);
+        transition: filter 0.2s ease; */
+        filter: none;
+    }
+    
+    .notes-image-delete * {
+        width: 4vw;
+        height: 4vw;
+        /* margin-left: -0.2vw; */
+    }
+
+    #image-magnifier {
+        width: 30vw;
+        height: initial;
+        position: fixed;
+        left: 50vw;
+        top: -25vh;
+        margin-left: -65vw !important;
+        /* margin-left: -33vw !important; */
+        object-fit: fill;
+        background-color: #000000cc;
+        padding: 50vw;
+        padding-top: 100vh;
+        padding-bottom: 100vh;
+        z-index: 999;
+    }
+    
+}
