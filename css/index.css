@@ -342,6 +342,24 @@ btn.unit-selector-template:active {
         padding-right: 4vw; 
     }
 
+    btn.unit-selector-template:active {
+        color: var(--white);
+        text-shadow: -1px 1px 0 #c09065,
+        1px 1px 0 #c09065,
+       1px -1px 0 #c09065,
+      -1px -1px 0 #c09065;
+        position:absolute;
+        top: calc(15vh + 1vw);
+        left: 2vw;
+        margin: 0.5vw;
+        background-color: var(--orange);
+        border-radius: 50px;
+        box-shadow: 4px 4px #888888;
+        margin-top: 0;
+        margin-right: 0;
+        transition: left 0.1s ease-out, top 0.1s ease-out, box-shadow 0.1s ease-out;
+    }
+
     .unit-notes-template {
         /* background-color: var(--blue);
         display: flex;
