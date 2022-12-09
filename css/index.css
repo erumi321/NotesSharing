@@ -63,6 +63,7 @@ a{
     margin-right: auto;
     box-shadow: none !important;
     border: 2px solid #c09065;
+    height: 1vh; 
 }
 
 .btn-format {
@@ -89,11 +90,36 @@ a{
     margin-top: 0;
     margin-right: 0;
     transition: left 0.1s ease-out, top 0.1s ease-out, box-shadow 0.1s ease-out;
+    height: 2vh;
+}
+
+.unit-selector-template.selected-unit-btn {
+    left: 7.5vw;
+    background-color: #6e6565;
+    border-radius: 50px 0 0 50px;
+    box-shadow: none;
+    color: black;
+    text-shadow: none;
+}
+.unit-selector-template p {
+    margin-top: 0.2vw;
+}
+.unit-selector-template.selected-unit-btn::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    height: calc(2vh + 2vw + 1px);
+    width: calc(2vh + 2vw);
+    background-color: #6e6565;
+    right: calc(-1 * (2vh + 2vw + 1px) / 2);
+    top: 0vh;
+    transform: rotate(45deg);
+    border-radius: 50% 0px 50% 20px; /*top right bottom left*/
 }
 
 btn.unit-selector-template:active {
     box-shadow: 0px 0px #0000;
-    top: calc(15vh + 1vw + 4px);
+    /* top: calc(15vh + 1vw + 4px); */
     left: calc(5vw + 4px);
     transition: left 0.1s ease-out, top 0.1s ease-out, box-shadow 0.1s ease-out;
 }
@@ -147,28 +173,57 @@ btn.unit-selector-template:active {
 
 #add-btn {
     position: fixed;
-    right: 4vw;
-    bottom: 3vw;
-    border-radius: 50%;
+    left: 64.25vw;
+    top: 6vw;
+    border-radius: 30px 30px 30px 30px;
     border: 3px solid #000;
-    background-color: var(--light-blue);
-    width: 4vw;
-    height: 4vw;
-    transition: right 0.3s ease, bottom 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+    background-color: var(--orange);
+    width: 7vw;
+    height: 2.3vw;
+    transition: left 0.3s ease, top 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
 }
 
-#add-btn:hover {
+#add-btn.disabled {
+    background-color: #6e6565;
+    opacity: 25%;
+}
+#add-btn.disabled::after{
+    content: "You can't post anything as we are not close enough to a test";
+    display: inline-block;
+    position: absolute;
+    right: -9vw;
+    top: -0.5em;
+    width: 8vw;
+    color: black;
+    opacity: 400%;
+}
+
+#add-btn:hover:not(.disabled) {
     filter:brightness(0.9);
     transition: all 0.3s ease;
-    width: 4.5vw;
-    height: 4.5vw;
-    right: 3.75vw;
-    bottom: 2.75vw;
+    width: 8vw;
+    left: 63.75vw;
 }
 
-#add-btn * {
-    width: 70%;
-    height: 70%;
+#add-btn p {
+    margin: auto 0;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    z-index: -10;
+}
+
+.dialog-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transform: scale(0.79);
+    transition: filter 0.13s ease, transform 0.13s ease;
+}
+.dialog-close:hover {
+    transition: all 0.1s ease;
+    transform: scale(0.89);
+    filter: brightness(1.05);
 }
 
 #add-dialog {
@@ -182,6 +237,13 @@ btn.unit-selector-template:active {
     background-color: var(--blue);
     border-radius: 2vw;
     padding: 1vw;
+}
+
+#add-dialog.hidden {
+    display: initial !important;
+    opacity: 0;
+    left: -100vw;
+    transition: left 0.15s cubic-bezier(.93,.08,1,.08);
 }
 
 #add-dialog *:focus {
@@ -203,7 +265,6 @@ btn.unit-selector-template:active {
     margin-left: 3vw;
     margin-bottom: 4vw;
 }
-
 
 #add-dialog select {
     width: 5vw;
@@ -237,9 +298,10 @@ btn.unit-selector-template:active {
     bottom: 0.4vw;
     margin-left: -2vw;
     border-radius: 3vw;
-    background-color:  var(--light-blue);
+    background-color:  var(--orange);
     font-weight: 600;
     transition: margin-left 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+    color: white;
 }
 
 #add-submit:hover {
@@ -258,9 +320,10 @@ btn.unit-selector-template:active {
     top: 0.6vw;
     margin-left: -2vw;
     border-radius: 3vw;
-    background-color:  var(--light-blue);
+    background-color:  var(--blue);
     font-weight: 600;
     transition: margin-left 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+    color: white;
 }
 
 .unit-shower-btn:not(.selected):hover {
@@ -287,7 +350,8 @@ btn.unit-selector-template:active {
 }
 
 .selected {
-    filter: brightness(0.6) saturate(0.8);
+    background-color: #6f6564;
+    /* filter: brightness(1.7) saturate(0.1) contrast(0.5); */
 }
 
 .notes-image-holder {
@@ -340,8 +404,32 @@ btn.unit-selector-template:active {
         left: 2vw;
         padding-left: 4vw; 
         padding-right: 4vw; 
+        height: 4vh;
+        /* border-radius: ; */
+        transition: background 0.3s ease, left 0.3s linear top 0.3s linear;;
     }
-
+    .unit-selector-template.selected-unit-btn.ignoredMargin-top {
+        transition: background 0.3s ease, margin-top 0.3s ease, left 0.3s ease, top 0.3s ease;
+        margin-top: 3vh !important;
+    }
+    .unit-selector-template.selected-unit-btn {
+        top: -2vh !important; 
+        left: 55vw !important;
+        background-color: #6e6565;
+        border-radius: 50px 50px 50px 50px;
+        box-shadow: none;
+        /* color: black; */
+        text-shadow: none;
+    }
+    .unit-selector-template p {
+        margin-top: 0.2vw;
+    }
+    .unit-selector-template.selected-unit-btn::after {
+        content: '';
+        width: 0;
+        height: 0;
+    }
+    
     btn.unit-selector-template:active {
         color: var(--white);
         text-shadow: -1px 1px 0 #c09065,
@@ -360,6 +448,9 @@ btn.unit-selector-template:active {
         transition: left 0.1s ease-out, top 0.1s ease-out, box-shadow 0.1s ease-out;
     }
 
+    #unit-shower {
+        margin-top: 5vh;
+    }
     .unit-notes-template {
         /* background-color: var(--blue);
         display: flex;
@@ -369,8 +460,8 @@ btn.unit-selector-template:active {
         color: var(--white);
         border-radius: 25px;
         box-shadow: 5px 5px #888888; */
-        width: 65vw;
-        margin-left: 60vw;
+        width: 60vw;
+        margin-left: 62.5vw;
         margin-right: 0;
     }
 
@@ -397,14 +488,90 @@ btn.unit-selector-template:active {
 
     #add-btn {
         position: fixed;
-        border-radius: 50%;
+        left: 30vw;
+        top: 6vw;
+        border-radius: 30px 30px 30px 30px;
         border: 3px solid #000;
-        background-color: var(--light-blue);
-        width: 15vw;
-        height: 15vw;
-        left: 3vw;
-        bottom: 10vw;
+        background-color: var(--orange);
+        width: 18vw;
+        height: 7vw;
+        transition: left 0.3s ease, top 0.3s ease, width 0.3s ease, height 0.3s ease, filter 0.3s ease;
     }
+    
+    #add-btn.disabled {
+        background-color: #d8d4cc !important;
+        border-color: #bcbdb4 !important;
+        color: #fcfbf3 !important;
+        opacity: 100%;
+    }
+    #add-btn.disabled::after{
+        width: 0;
+        height: 0;
+        content: ''
+    }
+    
+    #add-btn:active:not(.disabled) {
+        filter: brightness(0.8)
+    }
+
+    #add-btn:hover {
+        filter: unset;
+        width: 18vw;
+        left: 30vw;
+        height: 7vw;
+    }
+
+    #add-btn.disabled:hover {
+        filter: unset;
+        width: 18vw;
+        left: 30vw;
+        height: 7vw;
+    }
+
+    #add-btn.disabled:hover::after {
+        content: "You can't post anything as we are not close enough to a test";
+        display: inline-block;
+        position: absolute;
+        right: -10vw;
+        top: 3em;
+        width: 30vw;
+        padding: 3px 10px 0 10px;
+        color: #fcfbf3;
+        background-color: #d8d4cc;
+        border: 3px solid #bcbdb4;
+        height: 5em;
+        opacity: 1;
+    }
+    
+    #add-btn.disabled:hover::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        right: 6.5vw;
+        top: 2.5em;
+        color: #fcfbf3;
+        background-color: #d8d4cc;
+
+        z-index: 100;
+        border: 2px solid #bcbdb4;
+        border-right: 0;
+        border-bottom: 0;
+        width: 3vw;
+        height: 3vw;
+        transform: rotate(45deg);
+        opacity: 1;
+    }
+
+    #add-btn p {
+        margin: auto 0;
+        font-size: 1.25em;
+        font-weight: 700;
+        color: white;
+        z-index: -10;
+        margin-left: 0.8vh;
+    }
+
+
     
     #add-btn:hover {
         filter:brightness(0.9);

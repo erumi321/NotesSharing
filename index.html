@@ -37,7 +37,7 @@
 
             </div>
             <btn class="unit-selector-template hidden">
-                Unit X - NAME
+                <p>Unit X - NAME</p>
             </btn>
         </div>
         <img id="image-magnifier" class="hidden" onclick="defocusImage(this)"></img>
@@ -72,22 +72,23 @@
             </button>
         </div>
         <button id="add-btn" onclick="toggleAddDialog()">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAAA1klEQVR4nO3bMQ6AIBAAQfX/f9bGRmuMS5jp6IAN3bFtAAAAAAAAwLr2vzcwwPlaT32m4+8N8CRIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEiNIjCAxgsQIEjNyUvw9hb6aIXfphcQIEiNIzNS/jW5+UPEdQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRpAYQWIEiREkRhAAAAAAAACAjAtgjAN+8LnYAAAAAABJRU5ErkJggg==">
+            <p>Post</p>
         </button>
     </div>
 
-
-
     <div id="add-dialog" class="hidden">
         <select name="type" id="add-dialog-type" onchange="updateAddDialog(this)">
-            <option value="game">Game</option>
             <option value="note">Note</option>
+            <option value="game">Game</option>
         </select>
-        <div id="add-dialog-game" class="">
+        <div id="add-dialog-game" class="hidden">
             <p>Quizlet, Kahoot, etc. Link</p>
             <textarea type="text" id="add-game-input" rows="1"></textarea>
         </div>
-        <div id="add-dialog-note" class="hidden">
+        <div id="add-dialog-note" class="">
+            <div class="dialog-close" onclick="toggleAddDialog()">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADoElEQVRoge2Zv28SYRzGny+tUKRw59CjQKtRF+NQY5M2dnQ2cYMFFWM0OnVz0JjIpg4OOvkzphocjkH9C3TyR5tYE6O7ttcfMPTgWqGmx+tAaKD0vXLc+8aFZ+R433s+78t97/m+AD311FNP/1PEu6DryT7NUG6DKANgE0TPCrG1+6lU3pZpSNeTfUPLB64TY5cBBAB6ycz47dPZ7NZu3+/nTRRdUrMBw7oVmS8CPqB8Urs3BHVM15MZWRB18+pMcNFKR+YLoBpQOqnd3Bxd9AG4sdsYH28yxnAh8rUI36YNX8WG+mkFwd/r6aFldUbXk33SzP9eT6ufV+Cr2qC/NpT5Ahijc7xxXAAQaqz5B8YY1Fk5EC3mZ1cAxrav1eoeuDvO3wHgeXk8ClAThQQIJ/MgQnk8CgI9dQ1QjJt3qiOhnHlquA1CmV3G/l+WZ4ht8wtWm3lGgDkRRXUklFtNrN11DZBK5e1izMxU44OvdkIQAyJzK9j/y0prhvr6fTbLLQZO5jVDfRFcsNLql9U286WJYVRHwzrWEhediga3jO680cDS+nn1c/sqlSeGURkN66yUSPNKHXdOwzrvZL6TOfcEEA0h0nzHAKIgRJt3BeAVQoZ51wDdQsgy3xWAW4ji8R9MlvmuARoQ9dxSf/XvBvHnUDgHAE6lsnIonCvGzK7zVdcAnUIwHyDLvGcAYO8oUHfc+pk5OYzKwUHP5gEBAIDzTjRL5Mo3JAQA2BtChnnAKU53K87qAwJXS/ScLalyxwPbrObqJGoXPO9Ay0O80zxRW4pV5laF9hOeADrJ8zL7CQAQ04w41PmtiP+7HfGPDRgb29cJQGBpHbWQf8zfpxw9c+nou3z+J//hEQ2w3YwsWuccmxEzcaF4ZOFNAJHDW4r/BA8iQMqxzNTZtzMfPtTceuk+zLnINjKaoq4AvKRKWRDuGxoPqVIGhLuWUkAkFg3ReVMvMM+LhHAEkNlJiYJwPJ3upM57iQSdNkVO9+C+iaOGci1obOwaD0qTMSGpsnF4VhkZzJmT7YdnytwqgsZGWltSr/Lm4J+N+mg6PF+Q2oy0QBxshwBjiHwrAKBp1wBgIGp+uUsw35AjRA0AGDcx8HeA8KQ8rsEO9sMO7YM5FZNivqEWiKkY7NA+2MF+lMY1EOgRbxz3UDY8QA+sRAjVxOErYMQA9rAYMx/L/Isplcrbup7MaEz9WI0PToMYEaMnNTP+QNY9e+qpp5686R/eIucAE3eLZwAAAABJRU5ErkJggg==">
+            </div>
             <select name="note-type" id="add-note-type" onchange="updateAddNote(this)">
                 <option value="link">Link</option>
                 <option value="picture">Pictures</option>
@@ -108,7 +109,7 @@
             </div>
         </div>
         <button id="add-submit" onclick="submitNewPost()">
-            Submit
+            Post
         </button>
     </div>
 

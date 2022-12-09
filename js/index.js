@@ -32,7 +32,6 @@ function signInSuccess(authResult) {
 }
 
 var latestUnit = 0
-
 //Selector
 function createUnitSelectorButtons() {
     var e = document.getElementById("unit-selector")
@@ -42,35 +41,61 @@ function createUnitSelectorButtons() {
         child = e.children[1].lastElementChild;
     }
 
-    var i = 1
-    var yOffset = 5
-
+    var i = width<= 540? 0.5: 1
+    var yOffset = width <= 540? 12: 5
     API_getActiveUnits((active) => {
         var sortedActive = active.sort((a,b) => {return b-a})
+        var firstButton = null
+        var first = true
         sortedActive.forEach((num) => {
-            if (num > latestUnit) {
-                latestUnit = num
+            if (typeof(num) == typeof(true)) {
+                if (num == false) {
+                    document.getElementById("add-btn").classList.add("disabled")
+                    document.getElementById("add-btn").setAttribute("onclick", "")
+                }
+                return
             }
             API_getUnitName(num, (name) => {
                 var template = e.children[2]
 
                 var newBtn = template.cloneNode(true)
 
-                newBtn.innerText = `Unit ${num} - ${name}`
+                newBtn.children[0].innerText = `Unit ${num} - ${name}`
 
-                newBtn.setAttribute("onclick", `loadUnit(${num})`)
+                newBtn.setAttribute("onclick", `loadUnit(this, ${num})`)
                 newBtn.classList.remove("hidden")
                 newBtn.setAttribute("style", `margin-top: calc(${yOffset * i}vw + 1vh);`)
+                newBtn.setAttribute("id", `unit-selector-btn${num}`)
                 i++
                 e.children[1].append(newBtn)
+                if (first) {
+                    latestUnit = num
+                    firstButton = newBtn
+                    first = false
+                    loadUnit(newBtn, num)
+                }
             })
         })
-
-        loadUnit(sortedActive[0])
-        console.log(sortedActive)
     })
 }
-function loadUnit(unitNumber) {
+
+var oldBtn = null
+function loadUnit(btn, unitNumber) {
+    var e = btn.parentElement
+    for(var i = 0; i < e.children.length; i++) {
+        e.children[i].classList.remove("selected-unit-btn") 
+    }
+    btn.classList.add("selected-unit-btn")
+
+    if (width <= 540) {
+        if (oldBtn != null) {
+            btn.classList.remove("ignoredMargin-top")
+        }
+        oldBtn = btn
+        btn.classList.add("ignoredMargin-top")
+    }
+
+
     document.getElementById("unit-shower").classList.remove("hidden")
     document.getElementById("unit-selector").classList.add("selector-left-aligned")
     API_getUnit(unitNumber, (result) => {
@@ -221,7 +246,39 @@ window.addEventListener('wheel',(event) => {
 });
 
 function toggleAddDialog() {
-    document.getElementById("add-dialog").classList.toggle("hidden")
+    var b = document.getElementById("add-dialog")
+    b.classList.toggle("hidden")
+    if (b.classList.contains("hidden")) {
+        fadeOut(b)
+    }else {
+        fadeIn(b)
+    }
+}
+
+function fadeOut(element) {
+    var op = 1;  // initial opacity
+    var timer = setInterval(function () {
+        if (op <= 0.1){
+            element.style.display = 'none';
+            clearInterval(timer);
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op -= 0.1;
+    }, 10);
+}
+
+function fadeIn(element) {
+    var op = 0.1;  // initial opacity
+    element.style.display = 'block';
+    var timer = setInterval(function () {
+        if (op >= 1){
+            clearInterval(timer);
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += 0.1;
+    }, 10);
 }
 
 function updateAddDialog(selectElement) {
