@@ -108,10 +108,10 @@ a{
     content: '';
     position: absolute;
     display: inline-block;
-    height: calc(2vh + 2vw + 1px);
+    height: calc(2vh + 2vw);
     width: calc(2vh + 2vw);
     background-color: #6e6565;
-    right: calc(-1 * (2vh + 2vw + 1px) / 2);
+    right: calc(-1 * (2vh + 2vw - 2px) / 2);
     top: 0vh;
     transform: rotate(45deg);
     border-radius: 50% 0px 50% 20px; /*top right bottom left*/
