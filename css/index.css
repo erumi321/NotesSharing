@@ -31,6 +31,7 @@ a{
     justify-content: space-around;
     margin-left: 10vw;
     margin-right: 10vw;
+    margin-top: 1.5vw;
 }
 
 #unit-games {
@@ -322,7 +323,7 @@ btn.unit-selector-template:active {
     width: 4vw;
     height: 2vw;
     left: 50%;
-    top: 0.6vw;
+    top: 2.1vw;
     margin-left: -2vw;
     border-radius: 3vw;
     background-color:  var(--blue);
