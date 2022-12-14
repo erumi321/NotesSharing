@@ -494,19 +494,19 @@ btn.unit-selector-template:active {
 
   @media screen and (max-width: 540px) {
     #extra-info {
-        display: hidden;
-    }
+        display: none;
+      }
     #please-post-notice {
-        display: hidden;
+        display: none;
     }
     #reminder-arrow {
-        display: hidden;
+        display: none;
     }
     #email-notice {
-        display: hidden;
+        display: none;
     }
     #test-dates {
-        display: hidden;
+        display: none;
     }
     .unit-selector-template {
         font-size: 0.9em;
