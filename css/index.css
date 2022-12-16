@@ -196,8 +196,8 @@ btn.unit-selector-template:active {
     content: "You can't post anything as we are not close enough to a test";
     display: inline-block;
     position: absolute;
-    right: -9vw;
-    top: -0.5em;
+    right: -0.75em;
+    top: -5vw;
     width: 8vw;
     color: black;
     opacity: 400%;
