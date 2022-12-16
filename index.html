@@ -29,6 +29,10 @@
         
     </div>
 
+    <div id="loading-hider">
+        <div class="loader"></div>
+    </div>
+
     <div id="container" class="hidden">
         <div id="unit-selector">
             <p id="selector-header" class="unit-selector-template">Units</p>
@@ -45,6 +49,7 @@
                 <div>
 
                 </div>
+
                 <!--Loads each div as a copy of the template for each unit in the active units in unit directory-->
                 <div class="unit-notes-template hidden">
                     <p class="unit-notes-createdby">example</p>
@@ -52,6 +57,9 @@
                     <div class="unit-notes-image-container hidden">
                     </div>
                     <img class="unit-notes-data-image hidden" onclick="focusImage(this)"></img>
+                </div>                
+                <div id="notes-nothing-here" class="nothing-here hidden">
+                    <p>Nothing here. Try checking games.</p>
                 </div>
             </div>
             <div id="unit-games" class="hidden">
@@ -61,6 +69,9 @@
                 <div class="unit-notes-template hidden">
                     <p class="unit-notes-createdby">example</p>
                     <a target="_blank" class="unit-notes-data-link"></a>
+                </div>
+                <div id="games-nothing-here" class="nothing-here hidden">
+                    <p>Nothing here. Try checking notes.</p>
                 </div>
             </div>
             <button id="unit-shower-notesbtn" class="unit-shower-btn selected" onclick="showNotes(this)">

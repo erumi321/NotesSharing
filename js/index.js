@@ -31,6 +31,16 @@ function signInSuccess(authResult) {
     createUnitSelectorButtons()
 }
 
+var doneLoadingUnits = false
+var doneLoadingFirstUnitStuff = false
+
+function checkDoneLoader() {
+    if (doneLoadingUnits == false || doneLoadingFirstUnitStuff == false) {
+        return false
+    }
+    document.getElementById("loading-hider").classList.add("hidden");
+}
+
 var latestUnit = 0
 //Selector
 function createUnitSelectorButtons() {
@@ -74,6 +84,12 @@ function createUnitSelectorButtons() {
                     first = false
                     loadUnit(newBtn, num)
                 }
+
+                if (num == sortedActive[sortedActive.length - 2]) {
+                    doneLoadingUnits = true
+                    checkDoneLoader()
+                }
+
             })
         })
     })
@@ -101,6 +117,8 @@ function loadUnit(btn, unitNumber) {
     API_getUnit(unitNumber, (result) => {
         createUnitNotes(result.notes)
         createUnitGames(result.games)
+        doneLoadingFirstUnitStuff = true
+        checkDoneLoader()
     })
 }
 
@@ -114,6 +132,12 @@ function createUnitNotes(notes) {
     }
 
     var keys = Object.keys(notes).sort((a,b) =>{return b-a})
+
+    if (keys.length == 0) {
+        document.getElementById("notes-nothing-here").classList.remove("hidden")
+    }else{
+        document.getElementById("notes-nothing-here").classList.add("hidden");
+    }
 
     keys.forEach((key) => {
         var note = notes[key]
@@ -181,6 +205,12 @@ function createUnitGames(games) {
         child = e.children[0].lastElementChild;
     }
     var keys = Object.keys(games).sort((a,b) =>{return b-a})
+
+    if (keys.length == 0) {
+        document.getElementById("games-nothing-here").classList.remove("hidden")
+    }else{
+        document.getElementById("games-nothing-here").classList.add("hidden");
+    }
 
     keys.forEach((key) => {
         var game = games[key]
