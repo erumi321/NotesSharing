@@ -62,6 +62,8 @@ function createUnitSelectorButtons() {
                 if (num == false) {
                     document.getElementById("add-btn").classList.add("disabled")
                     document.getElementById("add-btn").setAttribute("onclick", "")
+                    document.getElementById("please-post-notice").classList.add("hidden")
+                    document.getElementById("reminder-arrow").classList.add("hidden")
                 }
                 return
             }

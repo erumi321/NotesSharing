@@ -465,7 +465,7 @@ btn.unit-selector-template:active {
   #email-notice {
     position: absolute;
     right: 4vw;
-    bottom: 42.5vh;
+    bottom: 5.5vh;
     color: #000;
     border: 3px solid var(--orange);
     padding: 0vh 2vw;
@@ -473,31 +473,22 @@ btn.unit-selector-template:active {
     width: 14.5vw;
   }
 
-  #email-notice * {
+  #email-notice p {
     display: block;
     color: #000;
-    font-size: 1em;
+    font-size: 0.55em;
+  }
+
+  #email-notice a {
+    display: block;
+    color: #000;
+    font-size: 1.3em !important;
   }
 
   #email-notice a:hover {
     color: #888;
   }
 
-  #test-dates {
-    position: absolute;
-    right: 4vw;
-    bottom: 60vh;
-    color: #000;
-    border: 3px solid var(--orange);
-    padding: 0vh 2vw;
-    border-radius: 10px;
-    width: 14.5vw;
-    font-size: 1.1em;
-  }
-  #test-dates * {
-    margin-top: 0.6em;
-    margin-bottom: 0.6em;
-  }
   .nothing-here {
     color: #999;
     font-size: 1.2em;
@@ -551,9 +542,6 @@ btn.unit-selector-template:active {
         display: none;
     }
     #email-notice {
-        display: none;
-    }
-    #test-dates {
         display: none;
     }
     .unit-selector-template {
