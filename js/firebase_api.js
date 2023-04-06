@@ -73,7 +73,21 @@ function API_logout() {
 //getting data
 function API_getActiveUnits(callback) {
     db.collection("unitDirectory").doc("active").get().then((doc) => {
-        callback(doc.data().active)
+        var order = []
+        var numbers = {}
+        var names = {}
+        doc.data().active.forEach((n) => {
+            if (typeof(n) != typeof(true)) {
+                let num = parseInt(n.toString().split("~")[0])
+                order.push(num)
+                numbers[num] = n.toString().split("~")[1]
+                names[num] = n.toString().split("~")[2]
+                console.log(n.toString().split("~")[0], n.toString().split("~")[1], n.toString().split("~")[2])
+            }else{
+                order.push(n)
+            }
+        })
+        callback(order, numbers, names)
     });
 }
 

@@ -516,6 +516,10 @@ btn.unit-selector-template:active {
     animation: spinner 4s linear infinite;
   }
   
+  .unit-selector-smallfont p {
+    font-size: 0.9em;
+  }
+
   @keyframes spinner {
     0% { transform: rotate(0deg); }
   
@@ -569,6 +573,7 @@ btn.unit-selector-template:active {
     }
     .unit-selector-template p {
         margin-top: 0.2vw;
+        font-size: 0.8em
     }
     .unit-selector-template.selected-unit-btn::after {
         content: '';

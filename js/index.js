@@ -41,7 +41,7 @@ function checkDoneLoader() {
     document.getElementById("loading-hider").classList.add("hidden");
 }
 
-var latestUnit = 0
+var latestUnit = ""
 //Selector
 function createUnitSelectorButtons() {
     var e = document.getElementById("unit-selector")
@@ -53,13 +53,13 @@ function createUnitSelectorButtons() {
 
     var i = width<= 540? 0.5: 1
     var yOffset = width <= 540? 12: 5
-    API_getActiveUnits((active) => {
-        var sortedActive = active.sort((a,b) => {return b-a})
+    API_getActiveUnits((order, numbers, names) => {
+        var sortedOrder = order.sort((a,b) => {return b-a})
         var firstButton = null
         var first = true
-        sortedActive.forEach((num) => {
-            if (typeof(num) == typeof(true)) {
-                if (num == false) {
+        sortedOrder.forEach((order) => {
+            if (typeof(order) == typeof(true)) {
+                if (order == false) {
                     document.getElementById("add-btn").classList.add("disabled")
                     document.getElementById("add-btn").setAttribute("onclick", "")
                     document.getElementById("please-post-notice").classList.add("hidden")
@@ -67,32 +67,39 @@ function createUnitSelectorButtons() {
                 }
                 return
             }
-            API_getUnitName(num, (name) => {
+            let num = numbers[order]
+            let name = names[order]
+
+            // API_getUnitName(num, (name) => {
                 var template = e.children[2]
 
                 var newBtn = template.cloneNode(true)
 
                 newBtn.children[0].innerText = `Unit ${num} - ${name}`
-
-                newBtn.setAttribute("onclick", `loadUnit(this, ${num})`)
+                console.log(name, typeof(name))
+                if (name.includes("USAPII")) {
+                    newBtn.classList.add("unit-selector-smallfont")
+                }
+                let unitName = num + name
+                newBtn.setAttribute("onclick", `loadUnit(this, '${unitName}')`)
                 newBtn.classList.remove("hidden")
                 newBtn.setAttribute("style", `margin-top: calc(${yOffset * i}vw + 1vh);`)
-                newBtn.setAttribute("id", `unit-selector-btn${num}`)
+                newBtn.setAttribute("id", `unit-selector-btn${unitName}`)
                 i++
                 e.children[1].append(newBtn)
                 if (first) {
-                    latestUnit = num
+                    latestUnit = num + name
                     firstButton = newBtn
                     first = false
-                    loadUnit(newBtn, num)
+                    loadUnit(newBtn, num + name)
                 }
 
-                if (num == sortedActive[sortedActive.length - 2]) {
+                if (order == sortedOrder[sortedOrder.length - 2]) {
                     doneLoadingUnits = true
                     checkDoneLoader()
                 }
 
-            })
+            // })
         })
     })
 }
