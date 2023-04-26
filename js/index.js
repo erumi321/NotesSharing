@@ -106,6 +106,7 @@ function createUnitSelectorButtons() {
 
 var oldBtn = null
 function loadUnit(btn, unitNumber) {
+    latestUnit = unitNumber
     var e = btn.parentElement
     for(var i = 0; i < e.children.length; i++) {
         e.children[i].classList.remove("selected-unit-btn") 
